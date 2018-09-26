@@ -1,10 +1,26 @@
 import React, { Component } from 'react';
 
-import Input from './components/Input/Input';
+import Calculator from './components/Calculator/Calculator';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  handleValue = (e) => {
+    this.setState({
+      inputValue: e.target.value
+    })
+  }
+
+  onChange = (e) => {
+    this.setState({
+
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -13,7 +29,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <h1>React Calculator</h1>
-        <Input />
+        <Calculator />
+        
       </div>
     );
   }
