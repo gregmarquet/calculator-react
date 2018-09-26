@@ -3,14 +3,16 @@
 }
 
 .App-logo {
+  display: inline-block;
   animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+  height: 60px;
+  margin-top: 7px;
 }
 
 .App-header {
   background-color: #222;
-  height: 150px;
-  padding: 20px;
+  height: 120px;
+  /* padding: 20px; */
   color: white;
 }
 
@@ -20,6 +22,19 @@
 
 .App-intro {
   font-size: large;
+}
+
+.main-container {
+  height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator-container {
+  width: 320px;
+  height: 520px;
+  position: relative;
 }
 
 @keyframes App-logo-spin {
