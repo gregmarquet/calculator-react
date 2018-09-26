@@ -19,6 +19,7 @@ class Calculator extends Component {
             </div>
             <div className="digit-keys">
               <button className="calculator-key key-0">0</button>
+              <button className="calculator-key key-dot">●</button>
               <button className="calculator-key key-1">1</button>
               <button className="calculator-key key-2">2</button>
               <button className="calculator-key key-3">3</button>
@@ -29,13 +30,13 @@ class Calculator extends Component {
               <button className="calculator-key key-8">8</button>
               <button className="calculator-key key-9">9</button>
             </div>
-            <div className="operator-keys">
-              <button className="calculator-key key-divide">/</button>
-              <button className="calculator-key key-multiply">*</button>
-              <button className="calculator-key key-subtract">-</button>
-              <button className="calculator-key key-add">+</button>
-              <button className="calculator-key key-equals">=</button>
-            </div>
+          </div>
+          <div className="operator-keys">
+            <button className="calculator-key key-divide">/</button>
+            <button className="calculator-key key-multiply">x</button>
+            <button className="calculator-key key-subtract">-</button>
+            <button className="calculator-key key-add">+</button>
+            <button className="calculator-key key-equals">=</button>
           </div>
         </div>
       </div>
