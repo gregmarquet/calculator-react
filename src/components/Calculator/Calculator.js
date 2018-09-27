@@ -10,6 +10,14 @@ class Calculator extends Component {
     }
   }
 
+  clearDisplay() {
+    const { displayValue } = this.state
+
+    this.setState({
+      displayValue: '0'
+    })
+  }
+
   inputDigit(digit) {
     const { displayValue } = this.state;
 
@@ -37,7 +45,8 @@ class Calculator extends Component {
         <div className="calculator-keypad">
           <div className="input-keys">
             <div className="function-keys">
-              <button className="calculator-key key-clear">AC</button>
+              <button className="calculator-key key-clear"
+                onClick={() => this.clearDisplay()}>AC</button>
               <button className="calculator-key key-sign">±</button>
               <button className="calculator-key key-percent">%</button>
             </div>
