@@ -6,7 +6,10 @@ class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayValue: '0'
+      value: null,
+      displayValue: '0',
+      waitingForOperand: false,
+      operator: null
     }
   }
 
@@ -28,19 +31,32 @@ class Calculator extends Component {
   }
 
   inputDigit(digit) {
-    const { displayValue } = this.state;
+    const { displayValue, waitingForOperand } = this.state;
 
-    this.setState({
-      displayValue: displayValue === '0' ? String(digit) : displayValue + digit
-    })
+    if(waitingForOperand) {
+      this.setState({
+        displayValue: String(digit),
+        waitingForOperand: false
+      })
+    } else {
+      this.setState({
+        displayValue: displayValue === '0' ? String(digit) : displayValue + digit
+      })
+    }
   }
 
   inputDot() {
-    const { displayValue } = this.state
+    const { displayValue, waitingForOperand } = this.state
 
-    if(displayValue.indexOf('.') === -1) {
+    if(waitingForOperand) {
       this.setState({
-        displayValue: displayValue + '.'
+        displayValue: '.',
+        waitingForOperand: false
+      })
+    } else if(displayValue.indexOf('.') === -1) {
+      this.setState({
+        displayValue: displayValue + '.',
+        waitingForOperand: false
       })
     }
   }
@@ -51,6 +67,40 @@ class Calculator extends Component {
 
     this.setState({
       displayValue: String(value / 100)
+    })
+  }
+
+  performOperation(nextOperator) {
+    const { displayValue, operator, value } = this.state
+
+    const nextValue = parseFloat(displayValue)
+    // const prevValue = null
+
+    const operations = {
+      '/': (prevValue, nextValue) => prevValue / nextValue,
+      '*': (prevValue, nextValue) => prevValue * nextValue,
+      '+': (prevValue, nextValue) => prevValue + nextValue,
+      '-': (prevValue, nextValue) => prevValue - nextValue,
+      '=': (prevValue, nextValue) => nextValue
+    }
+
+    if(value === null) {
+      this.setState({
+        value: nextValue
+      })
+    } else if (operator) {
+      const currentValue = value || 0
+      const computedValue = operations[operator](currentValue, nextValue)
+
+      this.setState({
+        value: computedValue,
+        displayValue: String(computedValue)
+      })
+    }
+
+    this.setState({
+      waitingForOperand: true,
+      operator: nextOperator
     })
   }
 
@@ -96,11 +146,21 @@ class Calculator extends Component {
             </div>
           </div>
           <div className="operator-keys">
-            <button className="calculator-key key-divide">/</button>
-            <button className="calculator-key key-multiply">x</button>
-            <button className="calculator-key key-subtract">-</button>
-            <button className="calculator-key key-add">+</button>
-            <button className="calculator-key key-equals">=</button>
+            <button 
+              className="calculator-key key-divide"
+              onClick={() => this.performOperation('/')}>/</button>
+            <button 
+              className="calculator-key key-multiply"
+              onClick={() => this.performOperation('*')}>x</button>
+            <button 
+              className="calculator-key key-subtract"
+              onClick={() => this.performOperation('-')}>-</button>
+            <button 
+              className="calculator-key key-add"
+              onClick={() => this.performOperation('+')}>+</button>
+            <button 
+              className="calculator-key key-equals"
+              onClick={() => this.performOperation('=')}>=</button>
           </div>
         </div>
       </div>
