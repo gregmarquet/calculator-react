@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import DynamicFont from 'react-dynamic-font';
 
 import './Calculator.css';
 
@@ -111,7 +112,9 @@ class Calculator extends Component {
     return (
       <div className="calculator">
         <div
-          className="calculator-display">{displayValue}</div>
+          className="calculator-display">
+          <DynamicFont content={displayValue} />
+        </div>
         <div className="calculator-keypad">
           <div className="input-keys">
             <div className="function-keys">
