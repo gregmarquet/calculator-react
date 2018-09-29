@@ -42,7 +42,7 @@ class Calculator extends Component {
       })
     } else {
       this.setState({
-        displayValue: displayValue === '0' ? String(digit) : displayValue + digit
+        displayValue: displayValue === '0' ? String(digit) : displayValue.length <= 8 ? displayValue + digit : displayValue
       })
     }
   }
