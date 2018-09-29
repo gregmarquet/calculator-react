@@ -17,7 +17,8 @@
 }
 
 .App-title {
-  font-size: 1.5em;
+  position: relative;
+  top: 33%;
 }
 
 .App-intro {

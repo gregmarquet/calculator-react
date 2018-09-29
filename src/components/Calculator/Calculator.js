@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import AutoShrinkingText from '../AutoShrinkingText/AutoShrinkingText';
 import './Calculator.css';
 
 
@@ -111,8 +110,8 @@ class Calculator extends Component {
 
     return (
       <div className="calculator">
-        <AutoShrinkingText
-          className="calculator-display">{displayValue}</AutoShrinkingText>
+        <div
+          className="calculator-display">{displayValue}</div>
         <div className="calculator-keypad">
           <div className="input-keys">
             <div className="function-keys">
